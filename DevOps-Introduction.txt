@@ -1,0 +1,187 @@
+DevOps
+++++++++++
+
+DevOps is a culture
+
+DevOps is a process
+
+DevOps is set of practises
+
+
+-> DevOps culture is used to colloborate Development and Operations in Software Project
+
+-> Using DevOps culture we can simplify software project delivery process to clients
+
+-> DevOps is used throughout software development life cycle process
+
+
+Software Development Life Cycle (SDLC)
+--------------------------------------
+-> The process of developing and delivering software project is called as SDLC
+
+-> In SDLC we have several phases
+
+1) Requirements Gathering
+
+2) Requirements Analysis
+
+3) Design / Planning
+
+4) Development / Coding / Implementation
+
+5) Testing
+
+6) Deployment
+
+7) Delivery
+
+8) Maintenence
+
+
+
+Waterfall Methodology
++++++++++++++++++++++++++
+
+-> Earlier people used to follow Waterfall Methodology to develop projects
+
+-> Waterfall is a linear methodology to develop and deliver projects
+
+-> Everything will happen step by step
+
+-> If one step completed then only we will go to next step
+
+-> We will move only in forward direction (No backward direction)
+
+-> Requirements are fixed 
+
+-> Budget is fixed
+
+-> Client involvement is very less
+
+-> Client will see the project at the end
+
+Note: Waterfall Methodology is not suitable for big projects
+
+
+
+Agile Methodology
++++++++++++++++++
+
+-> Agile is an iterative approach to develop and deliver the projects
+
+-> Development and testing will happen parallelly
+
+-> Client involvment will be very high
+
+-> We will deliver project in multiple releases (Sprints)
+
+-> For every release we will take client feedback
+
+-> Requirements are not fixed
+
+-> Budget is not fixed
+
+-> Project Development, Testing & Delivery is very frequent is Agile
+
+--------------------------------------------------------------------------------------------------------
+-> Using DevOps culture we can adopt agile methodology very easily
+
+-> DevOps is promoting Agile methodology
+
+-> Using DevOps we can achive Continutous Integration (CI) & Continous Deployment / Delivery (CD)
+
+			CI CD
+-------------------------------------------------------------------------------------------------------
+DevOps Advantages
+-------------------------------------------------------------------------------------------------------
+
+1) Speed
+
+2) Rapid Development
+
+3) Quick Releases
+
+4) Reliability
+
+5) Security
+
+6) Client Satisfaction
+
+7) Teams Colloboration
+
+
+Note: DevOps is not one person job, it is everyone's job in the project
+
+-------------------------------------------------------------------------------------------------------
+
+DevOps tools overview
+--------------------------------------------------------------------------------------------
+
+Build Tools ( Ant / Maven / Gradle )
+
+Repository Tools ( SVN / Git Hub / BitBucket )
+
+Code Review Tools ( PMD / Sonar Qube / Sonar lint )
+
+Code Deployment Tools ( Jenkins / UDeploy )
+
+Containerization Tools ( Docker )
+
+Orchestration Tools ( Kubernetes )
+
+Configuration Tools ( Chef / Ansible )
+
+Infrastructure as a Code (IaaC) (Terraform)
+
+Monitoring Tools (Nagios / Graphana )
+
+Project Management Tools ( Jira )
+
+------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
