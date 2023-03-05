@@ -1,0 +1,89 @@
+Docker DSL, or Domain Specific Language, is a set of instructions written in a specific language that is used to define and execute 
+actions related to Docker containers and images.
+
+Docker DSL can be used to automate tasks related to building, testing, and deploying Docker containers. It is often used in 
+continuous integration and deployment (CI/CD) pipelines to streamline the development process.
+
+There are a few different ways you can use Docker DSL. One option is to write your own scripts using the Docker API or 
+command line interface (CLI). You can also use a third-party tool such as Docker Compose, which allows you to define your 
+Docker environments in a YAML file and then use a set of pre-defined commands to manage your containers.
+
+Some examples of actions you can perform using Docker DSL include:
+
+Building Docker images
+Running containers
+Executing commands inside containers
+Copying files between a host machine and a container
+Setting environment variables in a container
+Connecting containers together
+
+Docker DSL can help you automate and streamline your Docker workflow, saving you time and effort in managing your containers.
+
+Here are some common Docker DSL keywords and their functions, along with real-time examples:
+
+FROM: This keyword is used to specify the base image that the subsequent instructions will be built upon. 
+For example, FROM ubuntu specifies that the Ubuntu image will be used as the base image.
+
+RUN: This keyword is used to execute a command in the context of the image. 
+For example, RUN apt-get update && apt-get install -y python3 installs Python3 in the image.
+
+COPY: This keyword is used to copy files from the host machine to the image. 
+For example, COPY . /app copies the current directory's files to the "/app" directory in the image.
+
+WORKDIR: This keyword is used to set the current working directory in the image. 
+For example, WORKDIR /app sets the current working directory to "/app".
+
+EXPOSE: This keyword is used to expose a port in the image to allow incoming connections. 
+For example, EXPOSE 80 exposes port 80 in the image.
+
+CMD: This keyword is used to specify the default command that will be executed when a container is started from the image. 
+For example, CMD ["python3", "app.py"] specifies that the "python3 app.py" command will be run by default when a container is started from the image.
+
+Here are some common Docker DSL keywords and examples of how they can be used:
+
+build: This keyword is used to build a Docker image from a Dockerfile. A Dockerfile is a text file that contains instructions for building an image. For example:
+Copy code
+build:
+  context: .
+  dockerfile: Dockerfile
+  tags: [my_image]
+This will build an image named "my_image" using the instructions in the Dockerfile located in the current directory.
+
+run: This keyword is used to run a command in a new container. For example:
+Copy code
+run:
+  name: my_container
+  command: bash
+This will start a new container with the name "my_container" and open a Bash shell inside the container.
+
+services: This keyword is used to define the services that make up an application in Docker Compose. For example:
+Copy code
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+This defines two services, "web" and "db", with the "web" service being built from the current directory and the "db" service using the official Postgres image. The "web" service also exposes port 80 on the host machine and maps it to port 80 in the container, while the "db" service sets an environment variable for the Postgres password.
+
+networks: This keyword is used to define the networks that the services in an application should be connected to. For example:
+Copy code
+networks:
+  default:
+    driver: bridge
+This defines a default network using the bridge driver, which creates a private network shared by the containers in the application.
+
+depends_on: This keyword is used to specify that a service depends on another service. For example:
+Copy code
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+  db:
+    image: postgres
+This specifies that the "web" service depends on the "db" service, so the "db" service will be started before the "web" service.
+

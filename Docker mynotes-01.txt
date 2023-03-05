@@ -1,0 +1,64 @@
+Docker is a tool that allows you to deploy applications in a containerized environment.
+ Here are some common Docker commands and examples of how they can be used:
+
+docker run: This command is used to run a Docker container. 
+ For example, docker run -it ubuntu bash will start an Ubuntu container and run the Bash shell inside it.
+
+docker start: This command starts a stopped Docker container.
+ For example, docker start my_container will start the container with the name "my_container".
+
+docker stop: This command stops a running Docker container.
+ For example, docker stop my_container will stop the container with the name "my_container".
+
+docker build: This command builds a Docker image from a Dockerfile.
+ For example, docker build -t my_image . will build an image called "my_image" from the Dockerfile in the current directory.
+
+docker push: This command pushes a Docker image to a registry, such as Docker Hub.
+ For example, docker push my_image will push the image "my_image" to the registry specified in your Docker configuration.
+
+docker pull: This command pulls a Docker image from a registry.
+ For example, docker pull ubuntu will download the latest version of the Ubuntu image from Docker Hub.
+
+docker build: This command is used to build an image from a Dockerfile. 
+The Dockerfile is a text file that contains instructions for building the image. For example, docker build -t my_image . will build an image named "my_image" from the Dockerfile in the current directory.
+
+docker run: This command is used to run a container based on an image.
+ For example, docker run -p 8080:80 my_image will run a container based on the "my_image" image and map port 8080 on the host to port 80 in the container.
+
+docker ps: This command is used to list the running containers.
+ For example, docker ps will list all running containers.
+
+docker stop: This command is used to stop a running container. 
+For example, docker stop my_container will stop the container named "my_container".
+
+docker rm: This command is used to remove a stopped container.
+ For example, docker rm my_container will remove the stopped container named "my_container".
+
+docker image ls: This command is used to list all available images.
+ For example, docker image ls will list all images.
+
+docker rmi: This command is used to remove an image.
+ For example, docker rmi my_image will remove the image named "my_image".
+
+Docker is a containerization platform that allows you to create, deploy, and run applications in containers. 
+Containers are isolated environments that enable you to package an application with all of its dependencies and run it in any other environment.
+
+Here are some common Docker commands with real-time examples:
+
+docker pull: This command is used to pull an image from a Docker registry, such as Docker Hub.
+ For example, docker pull ubuntu will pull the latest version of the Ubuntu image from Docker Hub.
+
+docker run: This command is used to run a command in a new container. 
+For example, docker run -it ubuntu bash will start a new container based on the Ubuntu image and open a Bash shell inside the container.
+
+docker start: This command is used to start an existing stopped container. 
+For example, docker start my_container will start the container with the name "my_container".
+
+docker stop: This command is used to stop a running container.
+ For example, docker stop my_container will stop the container with the name "my_container".
+
+docker build: This command is used to build a Docker image from a Dockerfile. A Dockerfile is a text file that contains instructions for building an image.
+ For example, docker build -t my_image . will build an image named "my_image" using the instructions in the current directory's Dockerfile.
+
+docker push: This command is used to push an image to a Docker registry.
+ For example, docker push my_image will push the image named "my_image" to the registry specified in the command line or in the image's configuration file.

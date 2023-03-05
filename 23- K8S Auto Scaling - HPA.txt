@@ -1,0 +1,180 @@
++++++++++++++
+Autoscaling
++++++++++++++
+
+-> It is the process of increasing / decreasing infrastructure based on demand
+
+-> Autoscaling can be done in 2 ways
+
+1) Horizontal Scaling
+
+2) Veriticle Scaling
+
+-> Horizontal Scaling means increasing number of instances/systems
+
+-> Veriticle Scaling means increasing capacity of single system
+
+
+Note: For production we will use Horizontal Scaling
+
+
+HPA : Horizontal POD Autoscaling
+
+VPA : Vertical POD Auoscaling (we don't use this)
+
+
+HPA : Horizontal POD Autoscaler which will scale up/down number of pod replicas of deployment, ReplicaSet or Replication Controller dynamically based on the observed Metrics (CPU or Memory Utilization).
+
+
+-> HPA will interact with Metric Server to identify CPU/Memory utilization of POD.
+
+
+# to get node metrics
+$ kubectl top nodes
+
+# to get pod metrics
+$ kubectl top pods
+
+
+Note: By default metrics service is not available
+
+-> Metrics server is an application that collect metrics from objects such as pods, nodes according to the state of CPU, RAM and keeps them in time.
+
+-> Metric-Server can be installed in the system as an addon. You can take and install it directley from the repo.
+
+
+
+1) clone git repo
+ 
+$ git clone https://github.com/ashokitschool/k8s_metrics_server
+
+2) check the cloned repo
+
+$ cd k8s_metrics_server
+
+$ ls -l deploy/1.8+/
+
+3)  apply manifest files from manifest-server directlry
+
+$ kubectl apply -f deploy/1.8+/
+
+Note: it will create service account, role, role binding all the stuff
+
+
+# we can see metric server running in kube-system ns
+$ kubectl get all -n kube-system
+
+
+# check the top nodes using metric server
+$ kubectl top nodes
+
+# check the top pods using metric server
+$ kubectl top pods
+
+
+Note: When we install Metric Server, it is installed under the kubernetes system namespaces.
+
+
+$ kubectl delete all -all
+
+$ kubectl delete -f /metrics-server/deploy/1.8+
+
+---
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpadeployment
+  labels:
+    name: hpadeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: hpapod
+  template:
+    metadata:
+      labels:
+        name: hpapod
+    spec:
+      containers:
+        - name: hpacontainer
+          image: k8s.gcr.io/hpa-example
+          ports:
+          - name: http
+            containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hpaclusterservice
+  labels:
+    name: hpaservice
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: hpapod
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpadeploymentautoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hpadeployment
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 50
+      type: Resource
+------------------------------
+
+-> resources & requests 
+
+-> In cluster if none of the pods have this min resources availabile it will not schedue 
+
+-> Min resource and Memory we are configuring to schedule pods using HPA
+
+Note: take hpademo.yml
+
+$ kubectl get pods
+
+$ kubectl apply -f hpa.yml
+
+Note: as of now there is no load on application
+
+-> Now we need to simulate the load 
+
+-> we can simulate load using busybox
+
+
+$ kubectl run -it --rm loadgenerator --image=busybox
+
+Note: witht this command we are inside the pod 
+
+$ wget -q -O- http://hpaclusterservice
+
+Note: we got response 
+
+$ while true; do wget -q -O- http://hpaclusterservice; done
+
+Note: connect to control-pane and check pods 
+
+
+$ kubectl top pods 
+
+$ kubectl get hpa

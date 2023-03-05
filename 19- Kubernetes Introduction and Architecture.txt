@@ -1,0 +1,423 @@
+Kubernetes (K8S)
++++++++++++++++
+
+-> K8S is an Production-Grade Container Orchestration Platform
+
+-> K8S is an open source software (OSS)
+
+-> K8S is used to manage containers of our application
+
+-> K8S will take care of container deployment, scaling, de-scaling and containers load balancing
+
+-> K8S is not replacement for Docker
+
+-> K8S is replacement for "Docker Swarm"
+
+-> K8S developed by Google and donated to CNCF in 2014
+
+-> CNCF means Cloud Native Computing Foundation
+
+-> K8S s/w developed by using GO Lang
+
+-> K8S v1.0 released to market in the year of 2015
+
+
+K8S Official Website : https://kubernetes.io/
+
+
++++++++++++
+K8S Features
+++++++++++++
+
+1) Automated Scheduling
+
+2) Self Healing Capabilities
+
+3) Automated Rollouts and Rollbacks
+
+4) Load Balancing
+
+5) Service Discovery
+
+6) Storage Orchestration
+
+7) Secret and configuration management
+
+
+
+-> K8S providing advanced Schedular concept to launch containers depends on our requirement
+
+->  Restarts containers that fail, replaces and reschedules containers when nodes die, kills containers that don't respond to your user-defined health check, and doesn't advertise them to clients until they are ready to serve.
+
+-> If something goes wrong, Kubernetes will rollback the change for you. Take advantage of a growing ecosystem of deployment solutions.
+
+-> Scale your application up and down with a simple command, with a UI, or automatically based on CPU usage
+
+Note: In Docker Swarm Load Balancing is manual process where as K8S supports Auto Scaling
+
+
+-> No need to modify your application to use an unfamiliar service discovery mechanism. Kubernetes gives Pods their own IP addresses and a single DNS name for a set of Pods, and can load-balance across them
+
+-> Automatically mount the storage system of your choice, whether from local storage, a public cloud provider such as GCP or AWS, or a network storage system such as NFS, iSCSI, Gluster, Ceph, Cinder, or Flocker.
+
+
+-> Deploy and update secrets and application configuration without rebuilding your image and without exposing secrets in your stack configuration.
+
+
++++++++++++++++++++++
+Kubernetes Architecture
++++++++++++++++++++++
+
+-> K8S works on cluster model
+
+-> In K8S cluster we will have master node(s) and worker nodes
+
+
+1) Master Node / Control Plane
+2) Worker Node
+3) API Server
+4) Schedular
+5) Controller Manager
+6) ETCD
+
+7) PODS
+8) Containers
+9) Docker Runtime
+10) Kubelet
+11) Kube-Proxy
+
+12) Kubectl
+13) UI
+
+
+
+-> To communicate with Kubernetes Cluster we have 2 options
+
+		1) UI (User Interface)
+		2) Kubectl (CLI s/w)
+
+
+-> Master Node manages worker nodes in the Cluster. It will assign tasks to worker nodes for execution.
+
+-> Worker Nodes will run the tasks which are assigned by Master Node.
+
+
++++++++++++++++++++
+What is API Server ?
++++++++++++++++++++
+
+-> In K8S cluster we have several services/objects
+
+PODS
+ReplicationController
+ReplicationSet
+DeamonSet
+Deployment
+Volumes
+Services
+
+-> All the above K8S services implemented using GO lang. To use K8S servies we no need to learn GO language. To use K8S servies K8S provided API server.
+
+-> When we execute a command API server will interact with K8S s/w and it will perform required operation.
+
+-> API server will acts as communication channel between  Developers / DevOps Engineers and K8S components
+
++++++++++++++
+What is ETCD
++++++++++++++
+
+-> It is a key-value pair Data Store in K8S
+
+-> It acts as database for kubernetes
+
+   (how many pods, how many nodes, how many containers etc....)
+
+
+-> When we ask K8S to run our application then API server will recieve that request and it will store into ETCD.
+
+
++++++++++++++++++
+What is Schedular
++++++++++++++++++
+
+-> It will schedule PODS for executions which are un-scheduled based on ETCD 
+
+-> Schedular will schedule PODS on the nodes with the help of Kubelet
+
+-> Kubelet is a worker node component
+
+-> Schedular will talk to kubelet to to check the resources to our own application
+
+
++++++++++++++++++
+What is Kubelet?
++++++++++++++++++
+
+-> Kubelet will act as Node Agent
+
+-> Kubelet will ensure that Containers are running healthy in the POD
+
+-> Kubelet will interact with Runtime to create a container in the POD
+
+Note: Here we will use Docker Runtime to create our containers
+
+
++++++++++++++
+What is POD ?
+++++++++++++++
+
+-> A POD is the smallest execution unit in Kubernetes
+
+-> A POD encapsulates one or more applications
+
+-> Containers will be grouped as one POD inorder to increae the intelligence of resources sharing
+
+-> POD can run single container as well as can multiple container
+
+
+++++++++++++++++++
+What is Kube-Proxy?
++++++++++++++++++++
+
+-> Kube-Proxy acts as nework proxy
+
+-> Kube-Proxy will maintain network rules on PODS
+
+-> The network rules allow network communication to your PODS from inside or outside of your cluster
+
+
+++++++++++++++++++++++++
+What is Controller Manager
+++++++++++++++++++++++++
+
+-> Controller Manager runs controllers in the background
+
+-> It is responsible to run tasks in K8S cluster
+
+-> It performs cluster level operations
+
+-> We have several Controllers in K8S
+
+NodeController
+ReplicationController
+EndpointController
+DeploymentController
+
+
+
+++++++++++++++++++++++++
+Kubernetes Cluster Setup
+++++++++++++++++++++++++
+
+-> There are multiple ways to setup kubernetes cluster
+
+	a) Self Managed K8S cluster
+
+	b) Provider Managed K8S cluster
+
+
+-> Self Managed Cluster means we have to setup the K8S cluster on our own (Lot of commands to install)
+
+-> To create Self Managed Cluster we have 2 options
+
+		1) Mini Kube ( Single Node K8S Cluster )
+
+		2) Kubeadm ( Multi Node K8S Cluster )
+
+
+-> Provider Managed Cluster means we will use K8S cluster which is configured by someone
+
+EKS : Elastic Kubernetes Service  ( AWS )
+
+AKS : Azure Kubernetes Service ( Microsoft Azure )
+
+GKE : Google Kubernetes Engine ( Google Cloud Platform )
+
+IKE : IBM Kubernetes Engine ( IBM Cloud )
+
+
++++++++++++++++++++++++++
+Kubernetes Core Components
++++++++++++++++++++++++++
+
+Kubernets Resources / Objects / Workloads
+
+Container
+POD
+Namespaces
+Service
+Deployment
+ReplicationController
+ReplicationSet
+DaemonSets
+PersistentVolumes
+StatefulSets
+Role
+Secret Config Maps
+
+
+
+-> We are using Docker to create Containers for our application
+-> Docker will be used as runtime engine in kubernetes cluster
+
+-> Kubernetes is used to manage our Docker Containers
+->  K8S will manage our containers but no directley (It will use POD to manage containers)
+
+-> POD is a smallest building block which we can deploy in K8S cluster
+-> Containers will be wrapped under one unit called POD (Logical Grouping)
+
+Note: In Docker, container is a smalletst part that we can deploy where as in K8S POD is smallet part we can deploy
+
+		
+		Note : To get clarify on PODS, we need to understand Namespaces first in K8S
+
+++++++++++++++++++
+What is Namespace?
+++++++++++++++++++
+
+-> Namespace represents a cluster inside another cluster
+
+-> Kubernetes components will be grouped logically using namespace
+
+Note: We can consider namespace as a package in java (dao pkg, service pkg, util pkg, controller pkg)
+
+-> We can have multiple namespaces in k8s cluster
+
+
+# we can get all namespaces using below command
+$ kubectl get namespaces 
+
+or 
+
+$ kubectl get ns
+
+Note: When we setup our k8s cluster we will get below 3 namespaces
+
+1) default : It will be used by default when we don't specify our namespace
+
+2) kube-system  : It contains k8s control plan pods
+
+3) kube-public : It is reserved for kubernetes system usage
+
+Note: It is not recommended to run our pods using default namespaces. We have to create our own namespace to run our PODS
+
+# create our own namespace
+$ kubectl create namespace <namespace-name>
+
+Ex:
+
+$ kubectl create namespace sbi-customer-app
+
+$ kubectl create namespace sbi-agent-app
+
+$ kubectl create namespace sbi-report-app
+
+-> We will run our POD using custom namespace
+
+# How to get pods belongs to a namespace
+$ kubectl get pods -n <name-space>
+
+# Get the pods of all namespaces
+$ kubectl get pods --all-namespaces
+
+# Getting all pods of default namespace
+$ kubectl get pods
+
+Note: If we delete a namespace, all the objects / resources / components also gets deleted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

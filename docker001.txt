@@ -1,0 +1,59 @@
+Step 01#
+install git 
+$ sudo yum install git
+
+step 02#
+install maven
+$ sudo yum install maven
+
+Step 03#
+Create Directory
+$ mkdir sbapp
+
+Step 04#
+$ cd sbapp
+
+Step 05#
+project clone from GitRepo--
+$ git clone < repo URL >
+
+Step 06#
+Open Project Folder
+cd sb-rest-app
+$ ls -l
+
+Step 07#
+Build Project using Maven ( inside /target folder .jar/war file create)
+$mvn clean package
+
+Step 08#
+Create or Open Existing Dockerfile
+$ vi Dockerfile
+
+save it..!!
+
+Step 09#
+build image /create image
+$docker build -t <image name> .
+
+Step 10#
+verify Docker Image
+$docker images
+sb-rest-app   latest    c3b199455da8   3 minutes ago   671MB
+openjdk       11        47a932d998b7   5 months ago    654MB
+
+Step 11#
+run the docker image
+$ docker run -d -p 8080:8080 sb-rest-app
+
+Step 12#
+Application Browse from Browser
+$ docker ps
+
+$ docker ps -a
+
+
+
+
+
+
